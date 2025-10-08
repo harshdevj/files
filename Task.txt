@@ -1,0 +1,88 @@
+Epic: Redis Query UI and CRUD Integration
+
+Description:
+Develop a Redis query interface that integrates with a Spring Boot backend to perform CRUD operations and display results in AG Grid with pagination and inline editing.
+
+⸻
+
+Story 1: Build UI for Redis Query Input and Result Rendering
+
+Story Points: 3
+Type: Story
+
+Description:
+Create a frontend UI that allows users to enter Redis queries (GET, SET, HGETALL, etc.) and view the results in an AG Grid. The grid should dynamically render columns and handle both flat and nested data structures.
+
+Acceptance Criteria:
+	•	Given the user is on the Redis Query page,
+When they enter a valid Redis query and click “Execute”,
+Then the system should send the query to the backend and display the results in the AG Grid.
+	•	Given the backend returns an invalid query error,
+When the response is received,
+Then the UI should display an error message without crashing.
+	•	Given the response contains structured Redis data (hashes, lists),
+When the AG Grid renders,
+Then it should automatically generate and align columns based on the response fields.
+
+⸻
+
+Story 2: Implement Spring Boot REST Service for Redis CRUD Operations
+
+Story Points: 3
+Type: Story
+
+Description:
+Develop a Spring Boot REST API that supports Redis CRUD operations. The service should handle different Redis data types (string, hash, list) and expose endpoints for Create, Read, Update, and Delete.
+
+Acceptance Criteria:
+	•	Given a valid REST API request (GET/POST/PUT/DELETE),
+When the endpoint is invoked,
+Then the corresponding Redis operation should execute successfully and return a structured JSON response.
+	•	Given an invalid key or malformed request,
+When the API is invoked,
+Then it should respond with an error message and appropriate HTTP status code.
+	•	Given the API receives a read request for an existing key,
+When the key is found,
+Then the data should be returned in JSON format suitable for display in AG Grid.
+
+⸻
+
+Story 3: Implement Pagination for Large Redis Datasets
+
+Story Points: 2
+Type: Story
+
+Description:
+Integrate pagination logic in both the frontend and backend to handle large Redis datasets efficiently. The system should fetch and display data in pages using configurable limits.
+
+Acceptance Criteria:
+	•	Given a Redis dataset with more than 1000 records,
+When the user executes a query,
+Then the UI should load only a limited set of records (e.g., 50 per page).
+	•	Given the user navigates to the next or previous page,
+When pagination controls are used,
+Then the corresponding page of data should be fetched and displayed from the backend.
+	•	Given pagination parameters (page number and size) are sent to the backend,
+When the API executes,
+Then only the relevant subset of Redis records should be returned.
+
+⸻
+
+Story 4: Enable CRUD Operations via Editable Rows in AG Grid
+
+Story Points: 2
+Type: Story
+
+Description:
+Add inline editing functionality to AG Grid that allows users to create, update, and delete Redis records directly from the UI. Each edit should automatically invoke the corresponding backend API.
+
+Acceptance Criteria:
+	•	Given the user double-clicks a grid cell,
+When they modify the value and press Enter,
+Then the update API should be called and Redis should be updated with the new value.
+	•	Given the user clicks the “Delete” icon on a row,
+When the delete API succeeds,
+Then the corresponding record should be removed from both Redis and the AG Grid.
+	•	Given the user clicks “Add Row” to create a new record,
+When the data is entered and saved,
+Then the backend should persist the new record in Redis and refresh the grid.
