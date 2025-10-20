@@ -1,0 +1,61 @@
+import pyautogui
+import time
+
+# Interval in seconds between movements
+INTERVAL = 5
+# Distance to move the mouse up/down in pixels
+MOVE_DISTANCE = 10
+
+def main():
+    direction = 1  # 1 = down, -1 = up
+    print("Mouse movement toggler started. Press Ctrl+C to stop.")
+    while True:
+        try:
+            x, y = pyautogui.position()
+            new_y = y + (MOVE_DISTANCE * direction)
+            pyautogui.moveTo(x, new_y, duration=0.1)
+            direction *= -1  # Toggle direction
+            time.sleep(INTERVAL)
+        except KeyboardInterrupt:
+            print("\nStopped by user.")
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+            time.sleep(INTERVAL)
+
+if __name__ == "__main__":
+    main()
+
+
+------------------------------
+
+import pyautogui
+import time
+
+# Simulate ALT+TAB to switch window
+pyautogui.hotkey('alt', 'tab')
+time.sleep(0.5)
+
+# Type a username placeholder (for demo)
+pyautogui.typewrite("demo_user", interval=0.01)
+
+# Press TAB to move to next field
+#time.sleep(0.01)
+#pyautogui.press('tab')
+pyautogui.hotkey('tab')
+#pyautogui.keyDown('tab')
+#pyautogui.keyUp('tab')
+
+
+# Type a placeholder password (not real credentials)
+pyautogui.typewrite("demo_password", interval=0.01)
+
+# Press ENTER
+pyautogui.press('enter')
+
+
+
+
+
+
+
